@@ -27,7 +27,8 @@
         "xxhdpi": "./assets/img/splash/splash-xxhdpi.png",
         "xxxhdpi": "./assets/img/splash/splash-xxxhdpi.png",
         "resizeMode": "contain"
-      }
+      },
+      "package": "com.ranasami06.GrocersApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

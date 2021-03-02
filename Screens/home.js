@@ -1,18 +1,24 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, ScrollView,Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
-import { DrawerActions } from '@react-navigation/drawer';
+//import { DrawerActions } from '@react-navigation/drawer';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   responsiveWidth,
   responsiveHeight,
   responsiveFontSize,
 } from 'react-native-responsive-dimensions';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
    
     alignItems: 'center',
-    backgroundColor: '#fafafa'
+    backgroundColor: '#fafafa',
+    width:windowWidth,
+    height:windowHeight,
   },
   topView: {
   //  backgroundColor: '#25435f',
@@ -86,6 +92,7 @@ header: {
 });
 
 const Screen1 = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <StatusBar
@@ -98,8 +105,9 @@ const Screen1 = () => {
           <View style={styles.header}>
             <TouchableOpacity
               
-                onPress={() => { this.props.navigation.openDrawer() }}
-              >
+              onPress={() => {
+                navigation.dispatch(DrawerActions.openDrawer());
+              }}>
               <Entypo
                 name={'menu'}
                 color={'#fd9681'}
@@ -133,19 +141,12 @@ const Screen1 = () => {
         </View>
 
         <View style={{}}>
-          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{ width: 380, height: 100, marginTop: 20, resizeMode: "contain",elevation:10, }}>
+          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{ width: 380, height: 100, marginTop: 20, resizeMode: "contain",elevation:10 }}>
             <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
           </ImageBackground>
         </View>
 
-        <View>
-          <Icon
-            size={80}
-            name='arrow-right'
-            color='#00aced'
-          />
-
-        </View>
+       
       </ScrollView>
     </View>
 
