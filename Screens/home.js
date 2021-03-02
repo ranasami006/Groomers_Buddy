@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, ScrollView,Dimensions } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, StatusBar, ScrollView,Dimensions,SafeAreaView } from 'react-native'
 import { Icon } from 'react-native-elements'
 //import { DrawerActions } from '@react-navigation/drawer';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -18,13 +18,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fafafa',
     width:windowWidth,
-    height:windowHeight,
+    height:windowHeight-50,
   },
   topView: {
   //  backgroundColor: '#25435f',
    // height: responsiveHeight(17),
     //borderRadius: responsiveWidth(3),
 },
+scrollView: {
+ // backgroundColor: 'pink',
+//marginBottom: 70,
+},
+
 header: {
   flexDirection: 'row',
   marginLeft: responsiveWidth(2),
@@ -94,13 +99,13 @@ header: {
 const Screen1 = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         backgroundColor="white"
         barStyle="light-content"
         translucent
       />
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         
           <View style={styles.header}>
             <TouchableOpacity
@@ -148,7 +153,7 @@ const Screen1 = () => {
 
        
       </ScrollView>
-    </View>
+    </SafeAreaView>
 
   );
 };

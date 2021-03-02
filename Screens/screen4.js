@@ -1,5 +1,5 @@
 import React from 'react'
-import {View,Text,Image,ScrollView, StyleSheet, ImageBackground, Button, Dimensions,StatusBar,TouchableOpacity } from 'react-native'
+import {View,Text,Image,ScrollView, StyleSheet, ImageBackground, Button, Dimensions,StatusBar,TouchableOpacity,SafeAreaView } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#fafafa',
       width:windowWidth,
-      height:windowHeight,
-    },
+      height:windowHeight-50, 
+       },
     header: {
       flexDirection: 'row',
       marginLeft: responsiveWidth(2),
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 const Screen4 = () => {
   const navigation = useNavigation();
   return (
-  <View style={styles.container}>
+  <SafeAreaView style={styles.container}>
     <StatusBar
         backgroundColor="white"
         barStyle="light-content"
@@ -197,7 +197,7 @@ const Screen4 = () => {
       </ScrollView>
 
 
-  </View>
+  </SafeAreaView>
   );
 };
 

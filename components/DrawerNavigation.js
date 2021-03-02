@@ -104,7 +104,7 @@ const Tab = () => {
               style: {
                   backgroundColor: 'white',
                   alignItems: 'center',
-                  height:90,
+                  //height:60,
               },
           }}
       >
@@ -112,11 +112,11 @@ const Tab = () => {
           options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:15,width:'70%',height:'110%',justifyContent:'center',marginTop:20,padding:10}}>
+                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
                   <FontAwesome 
                   name={'calendar'}
                   color={'black'}
-                  size={35}
+                  size={25}
                   style={styles.iconHome}
                   />
                   </View>
@@ -128,8 +128,8 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:15,width:'70%',height:'110%',justifyContent:'center',marginTop:20,padding:10}}>
-                  <Image
+                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
+                <Image
                     source={require("../assets/img/Screen2Icon.png")}
                     style={styles.iconHome}
                   />
@@ -142,8 +142,8 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:15,width:'70%',height:'110%',justifyContent:'center',marginTop:20,padding:10}}>
-                  <Image
+                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
+                <Image
                     source={require("../assets/img/Screen3Icon.png")}
                     style={styles.iconHome}
                   />
@@ -156,8 +156,8 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:15,width:'70%',height:'110%',justifyContent:'center',marginTop:20,padding:10}}>
-                  <Image
+                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5,marginTop:5}}>
+                <Image
                     source={require("../assets/img/Screen4Icon.png")}
                     style={styles.iconHome}
                   />
