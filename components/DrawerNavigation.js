@@ -177,8 +177,11 @@ export default  App=()=> {
   return (
     // <NavigationContainer>
     //   <Drawer.Navigator initialRouteName="Tab">
-    //     <Drawer.Screen name="Forward Weeks" component={Tab} />
-    //     <Drawer.Screen name="Consumables Cost" component={Tab2} />
+    //    
+    // <NavigationContainer>
+    //   <Drawer.Navigator initialRouteName="Tab">
+    //    <Drawer.Screen name="Forward Weeks" component={Tab} />
+    //      <Drawer.Screen name="Consumables Cost" component={Tab2} />
     //     <Drawer.Screen name="Power Cost" component={Tab3} />
     //     <Drawer.Screen name="Trimming Guide" component={Tab4} />
     //   </Drawer.Navigator>
