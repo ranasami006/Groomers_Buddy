@@ -64,12 +64,12 @@ export default class CustomDrawer extends Component {
                 <FontAwesome 
                   name={'calendar'}
                   color={'black'}
-                  size={responsiveHeight(5)}
+                  size={responsiveHeight(3.5)}
                   style={{marginHorizontal:responsiveWidth(0)}}
                   />
                   </View>
-                <Text style={[styles.text1, { marginLeft: responsiveWidth(5) }]}>
-                  Home
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(1.2) }]}>
+                  Pick Date
               </Text>
               </View>
             </TouchableOpacity>
@@ -84,8 +84,8 @@ export default class CustomDrawer extends Component {
                 style={styles.imageDrawer}
                 source={require('../assets/img/Screen2Icon.png')}></Image>
                 </View>
-                <Text style={[styles.text1, { marginLeft: responsiveWidth(8) }]}>
-                  Screen 2
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(4.3) }]}>
+                Consumables Cost
               </Text>
               </View>
             </TouchableOpacity>
@@ -96,12 +96,12 @@ export default class CustomDrawer extends Component {
               style={styles.tab}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={styles.icon}>
-                <Image
+              <Image
                 style={styles.imageDrawer}
                 source={require('../assets/img/Screen3Icon.png')}></Image>
                 </View>
-                <Text style={[styles.text1, { marginLeft: responsiveWidth(8) }]}>
-                Screen 3
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(5) }]}>
+                Power Cost
               </Text>
               </View>
             </TouchableOpacity>
@@ -113,11 +113,11 @@ export default class CustomDrawer extends Component {
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={styles.icon}>
                 <Image
-                style={styles.imageDrawer}
+                style={[styles.imageDrawer,{width: responsiveHeight(5)}]}
                 source={require('../assets/img/Screen4Icon.png')}></Image>
                 </View>
-                <Text style={[styles.text1, { marginLeft: responsiveWidth(8) }]}>
-                Screen 4
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(5) }]}>
+                Summary of cut
               </Text>
               </View>
             </TouchableOpacity>
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
   profileView: {
    //marginTop:30,
     alignSelf:'flex-end',
-     alignItems: 'center',
-    marginTop: responsiveWidth(8),
+   // alignItems: 'center',
+    marginTop: responsiveWidth(6),
     backgroundColor: 'white',
     
   },
@@ -150,47 +150,46 @@ const styles = StyleSheet.create({
   },
 
   imageDrawer: {
-    height: responsiveHeight(5.9),
-    width: responsiveHeight(5),
-    marginHorizontal:responsiveWidth(7),
+    height: responsiveHeight(5),
+    width: responsiveHeight(4),
   },
   bottomContainer: {
-    width: '90%',
+    width: '95%',
     alignSelf: 'center',
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center',
-    marginTop: responsiveWidth(2),
-    marginLeft: responsiveWidth(5),
+    //justifyContent:'center',
+    //alignContent:'center',
+   // alignItems:'center',
+   // marginTop: responsiveWidth(2),
+    //marginLeft: responsiveWidth(5),
   },
   text: {
     fontSize: responsiveFontSize(1.3),
-    fontFamily: 'bold',
+    //fontFamily: 'bold',
     marginLeft: responsiveWidth(4),
   },
   text1: {
-    fontSize: responsiveFontSize(2.5),
-    fontFamily: 'bold',
+    fontSize: responsiveFontSize(2.2),
+    //fontFamily: 'bold',
     color: '#142F60',
     textAlign:'center',
   },
   tab: {
     flexDirection: 'row',
     width: '100%',
-    marginTop: responsiveWidth(5),
+    marginTop: responsiveWidth(1),
     borderBottomWidth:1,
     borderColor:'#fd9681',
     padding:15,
     },
   icon: {
-    height: responsiveHeight(5),
+    height: responsiveHeight(6),
     width: responsiveHeight(5),
-    borderRadius: responsiveHeight(6),
-    //backgroundColor: 'white',
-    //alignSelf: 'center',
-    //justifyContent:'center',
-    //alignContent:'center',
-    alignItems:"center"
+    //borderRadius: responsiveHeight(6),
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    justifyContent:'center',
+    alignContent:'center',
+    // alignItems:"center"
   },
   buttonText:
   {

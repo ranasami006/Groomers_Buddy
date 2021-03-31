@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React , { useState, useEffect } from 'react';
 import { Button, View, Text,Image,StyleSheet,Dimensions } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,13 +10,15 @@ import {
 } from 'react-native-responsive-dimensions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-
+import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Screens/home'
 import Screen2 from '../Screens/screen2'
 import Screen3 from '../Screens/screen3'
 import Screen4 from '../Screens/screen4'
 import CustomDrawer from './CustomeDrawer'
+import Splash from './Splash'
+hideAsync().catch(console.warn);
 const Drawer = createDrawerNavigator();
 const MainStack = createStackNavigator();
 const OverViewStack = createStackNavigator();
@@ -82,15 +84,7 @@ const Tab = () => {
               } 
               return <MaterialCommunityIcons name={iconName} size={size} color={color} backgroundColor={'blue'} />
           },
-          // tabBarBadge: ({ focused, color, size }) => {
-          //     if (route.name === 'OverView') {
-
-          //     style=
-          //     {
-          //         height:12
-          //     }
-          // }
-          // }
+         
       })}
 
 
@@ -104,7 +98,7 @@ const Tab = () => {
               style: {
                   backgroundColor: 'white',
                   alignItems: 'center',
-                  //height:60,
+                  height:60,
               },
           }}
       >
@@ -112,14 +106,26 @@ const Tab = () => {
           options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
+                // focused?(
+                //   <Image
+                //   source={require("../assets/groomers-assets/Group8.png")}
+                //   style={styles.iconHomeFoucsed}
+                // />
+                // ):(
+                  <View style={{backgroundColor:'#e3986f',borderRadius:7,width:'50%',height:'85%',justifyContent:'center',}}>
                   <FontAwesome 
                   name={'calendar'}
-                  color={'black'}
-                  size={25}
-                  style={styles.iconHome}
+                  color={'white'}
+                  size={32}
+                  style={styles.iconCalender}
                   />
                   </View>
+               
+              //   <Image
+              //   source={require("../assets/groomers-assets/Group8.png")}
+              //   style={styles.iconHome}
+              // />
+              // )
                   );
             },
           }}
@@ -128,13 +134,18 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
+                // focused?(
+                //   <Image
+                //   source={require("../assets/groomers-assets/Group9.png")}
+                //   style={styles.iconHomeFoucsed}
+                // />
+                // ):(
                 <Image
-                    source={require("../assets/img/Screen2Icon.png")}
-                    style={styles.iconHome}
-                  />
-                  </View>
-                  );
+                source={require("../assets/groomers-assets/nav/Untitled-3.png")}
+                style={styles.iconHome}
+              />
+              // )
+                              );
             },
           }}
           />
@@ -142,12 +153,17 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5}}>
+                // focused?(
+                //   <Image
+                //   source={require("../assets/groomers-assets/Group10.png")}
+                //   style={styles.iconHomeFoucsed}
+                // />
+                // ):(
                 <Image
-                    source={require("../assets/img/Screen3Icon.png")}
-                    style={styles.iconHome}
-                  />
-                  </View>
+                source={require("../assets/groomers-assets/nav/Untitled-1.png")}
+                style={styles.iconHome}
+              />
+              // )
                   );
             },
           }}
@@ -156,12 +172,17 @@ const Tab = () => {
            options={{
             tabBarIcon: ({ focused }) => {
               return (
-                <View style={{backgroundColor:'#fd9d8a',borderRadius:10,width:'50%',height:'95%',justifyContent:'center',margin:10,padding:5,marginTop:5}}>
+                // focused?(
+                //   <Image
+                //   source={require("../assets/groomers-assets/Group11.png")}
+                //   style={styles.iconHomeFoucsed}
+                // />
+                // ):(
                 <Image
-                    source={require("../assets/img/Screen4Icon.png")}
-                    style={styles.iconHome}
-                  />
-                  </View>
+                source={require("../assets/groomers-assets/nav/Untitled-2.png")}
+                style={styles.iconHome}
+              />
+              // )
                   );
             },
           }}
@@ -174,20 +195,22 @@ const Tab = () => {
 }
 
 export default  App=()=> {
+  const [isLoadingSplash, setIsLoadingSplash] = useState(true);
+  const init = (): void => {
+    setTimeout(async () => {
+      hideAsync().catch(console.warn);
+      setIsLoadingSplash(false);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+  
   return (
-    // <NavigationContainer>
-    //   <Drawer.Navigator initialRouteName="Tab">
-    //    
-    // <NavigationContainer>
-    //   <Drawer.Navigator initialRouteName="Tab">
-    //    <Drawer.Screen name="Forward Weeks" component={Tab} />
-    //      <Drawer.Screen name="Consumables Cost" component={Tab2} />
-    //     <Drawer.Screen name="Power Cost" component={Tab3} />
-    //     <Drawer.Screen name="Trimming Guide" component={Tab4} />
-    //   </Drawer.Navigator>
-    // </NavigationContainer>
-
-
+    <>
+    {isLoadingSplash && <Splash />}
+    {!isLoadingSplash && (
  <NavigationContainer>
 <Drawer.Navigator initialRouteName="Main"
     //edgeWidth={0}
@@ -203,15 +226,27 @@ export default  App=()=> {
     <Drawer.Screen name="Main" component={Main} />
 </Drawer.Navigator>
 </NavigationContainer> 
+)}
+</>
   );
 }
 
 const styles = StyleSheet.create({
   iconHome: {
-    aspectRatio: 0.9,
-    height: '80%',
-    //marginLeft: 33,
-    //marginTop: 13,
+    aspectRatio: 1,
+    height: '85%',
+    height: '85%',
+    resizeMode: 'contain',
+  },
+  iconCalender:{
+    //height: '85%',
+    alignSelf:'center',
+  },
+  iconHomeFoucsed: {
+    aspectRatio: 1,
+    height: '85%',
+    borderWidth:2,
+    borderColor:'#fca18e',
     alignSelf: 'center',
     resizeMode: 'contain',
   },
