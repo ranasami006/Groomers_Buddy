@@ -1,5 +1,9 @@
 import React from 'react'
-import { View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, Button, Dimensions, StatusBar, ScrollView, TouchableOpacity } from 'react-native'
+import {
+  View, Text, Image,
+  TextInput,
+  SafeAreaView, StyleSheet, ImageBackground, Button, Dimensions, StatusBar, ScrollView, TouchableOpacity
+} from 'react-native'
 import { Icon } from 'react-native-elements'
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
@@ -36,13 +40,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'flex-start', 
+    alignSelf: 'flex-start',
     marginTop: Constants.statusBarHeight,
   },
   tinyImage: {
-    width: 190,
-    height: 170,
-    marginTop:responsiveHeight(5),
+    width: 150,
+    height: 135,
+    marginTop: responsiveHeight(2),
   },
   tinyImageBg: {
     width: windowWidth / 2.1,
@@ -85,15 +89,15 @@ const styles = StyleSheet.create({
   screenHeadingContent: {
     textAlign: 'center',
     fontSize: 15,
-    width: windowWidth/1.1,
+    width: windowWidth / 1.1,
     marginTop: 5,
     marginBottom: 10,
-    alignSelf:'center',
+    alignSelf: 'center',
   },
   boxesTextHeading: {
-    paddingTop: 20, 
-    fontSize: 20, 
-    color: '#fd9d8a', 
+    paddingTop: 20,
+    fontSize: 20,
+    color: '#fd9d8a',
     fontWeight: 'bold'
   },
   boxesTextContent: {
@@ -157,8 +161,8 @@ const styles = StyleSheet.create({
     width: deviceWidth - 50,
     height: responsiveHeight(5),
     borderBottomWidth: 1,
-    alignItems:'center',
-    alignSelf:'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     borderColor: '#d1c0c0',
     flexDirection: 'row',
     alignContent: "space-between",
@@ -174,12 +178,12 @@ const styles = StyleSheet.create({
     alignContent: "space-between",
     justifyContent: 'space-between',
     padding: responsiveHeight(1),
-    marginTop:responsiveHeight(1), 
-    alignItems:'center',
-    alignSelf:'center',
+    marginTop: responsiveHeight(1),
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   bottomView: {
-   // marginTop: responsiveHeight(5),
+    // marginTop: responsiveHeight(5),
 
   },
   SecondViewLeft: {
@@ -241,17 +245,27 @@ const Screen2 = () => {
 
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Mix Ratio (X:1)</Text>
-          <Text style={styles.SecondViewRight}>20   ></Text>
+          {/* <TextInput
+           
+            onChangeText={onChangeNumber}
+            value={number}  
+            
+          /> */}
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Ratio value"
+            keyboardType="numeric"
+          />
         </View>
 
 
         <View style={styles.SecondView}>
-          <Text style={styles.SecondViewLeft}>Bottle Size (ltr)</Text>
+          <Text style={styles.SecondViewLeft}>Bottle Size (Ltr)</Text>
           <Text style={styles.SecondViewRight}>       5     ></Text>
         </View>
         <View style={styles.SecondView}>
-          <Text style={styles.SecondViewLeft}>Cost of Bottle</Text>
-          <Text style={styles.SecondViewRight}>£32.00   ></Text>
+          <Text style={styles.SecondViewLeft}>Cost of Bottle(£/$)</Text>
+          <Text style={styles.SecondViewRight}>32.00   ></Text>
         </View>
         <View style={styles.bottomView}>
           <View style={styles.SecondViewTotal}>
@@ -265,17 +279,17 @@ const Screen2 = () => {
         </View>
 
         <View>
-        <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
-              width: windowWidth - 30,
-              height: responsiveHeight(15),
-              marginTop: 10,
-              resizeMode: "contain",
-              elevation: 10
-            }}>
-              <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
-            </ImageBackground>
+          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
+            width: windowWidth - 40,
+            height: responsiveHeight(15),
+            marginTop: 10,
+            resizeMode: "contain",
+            elevation: 10
+          }}>
+            <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
+          </ImageBackground>
         </View>
-</View>
+      </View>
       {/* </ScrollView> */}
 
     </SafeAreaView>

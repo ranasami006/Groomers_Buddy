@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacit
 import { Icon } from 'react-native-elements'
 import { StatusBar } from 'expo-status-bar';
 //import { DrawerActions } from '@react-navigation/drawer';
+import moment from 'moment'; // 2.18.1
+
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   responsiveWidth,
@@ -13,15 +15,15 @@ import { useFonts } from 'expo-font';
 import Constants from 'expo-constants';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
+import DatePicker from 'react-native-datepicker';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#fafafa',
     width: windowWidth,
     height: windowHeight - 50,
-    flex: 0,
-    justifyContent: 'center',
+    flex: 1,
+    //justifyContent: 'center',
   },
   topView: {
   },
@@ -38,9 +40,9 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   tinyImage: {
-    width: 190,
-    height: 170,
-    marginTop:responsiveHeight(5),
+    width: 150,
+    height: 135,
+    marginTop: responsiveHeight(2),
     transform: [{ rotateX: '180deg' }, { rotateZ: '180deg' }],
   },
   logoText: {
@@ -61,8 +63,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   boxes: {
-    width: '28%',
-    height: 100,
+    width: '25%',
+    height: 90,
     marginLeft: responsiveWidth(3),
     backgroundColor: '#ffffff',
     alignItems: 'center',
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
 
   },
   boxexFocus: {
-    width: '28%',
-    height: 100,
+    width: '25%',
+    height: 90,
     marginLeft: 12,
     backgroundColor: '#ffffff',
     alignItems: 'center',
@@ -92,34 +94,39 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   screenHeading: {
-    fontSize: 25, marginTop: 20, fontWeight: 'bold'
+    fontSize: 25,
+    marginTop: 10, fontWeight: 'bold'
   },
   boxesTextHeading: {
-    paddingTop: 20, fontSize: 18, color: '#fd9d8a', fontWeight: 'bold'
+    paddingTop: 20,
+    fontSize: 15,
+    color: '#fd9d8a', fontWeight: 'bold'
   },
   boxesTextHeadingFocus: {
-    
-    paddingTop: 20, 
-    fontSize: 22,
-    color: '#fd9d8a', 
-    fontWeight: 'bold', 
+
+    paddingTop: 20,
+    fontSize: 17,
+    color: '#fd9d8a',
+    fontWeight: 'bold',
     //elevation: 5,
   },
 
   boxesTextContent: {
-    marginTop: 8, fontSize: 16, fontWeight: 'bold'
+    marginTop: 8,
+    fontSize: 13,
+    fontWeight: 'bold'
   },
   bottomImageContent: {
     color: 'white', padding: 20, fontSize: 16
   },
   boxesContainer: {
-    flex: 1, flexDirection: 'row', marginTop: 20
+    flex: 0, flexDirection: 'row', marginTop: 20
   },
   boxesContainerFocus: {
     flex: 1, flexDirection: 'row', marginTop: 30, elevation: 5, borderColor: 'grey'
   },
   boxesContainer2: {
-    flex: 1, flexDirection: 'row', marginTop: 20
+    flex: 0, flexDirection: 'row', marginTop: 20
   },
   icon: {
     alignSelf: 'center',
@@ -139,6 +146,7 @@ const styles = StyleSheet.create({
 });
 
 const Screen1 = () => {
+  const [date, setDate] = useState(new Date());
   const navigation = useNavigation();
   const [focus1, setFocus1] = useState(true);
   const [focus2, setFocus2] = useState(false);
@@ -146,6 +154,12 @@ const Screen1 = () => {
   const [focus4, setFocus4] = useState(false);
   const [focus5, setFocus5] = useState(false);
   const [focus6, setFocus6] = useState(false);
+   const date2 = moment(date,'DD-MM-YYYY').add(28, 'd').format('DD-MM-YYYY');
+   const date3 = moment(date,'DD-MM-YYYY').add(42, 'd').format('DD-MM-YYYY');
+   const date4 = moment(date,'DD-MM-YYYY').add(56, 'd').format('DD-MM-YYYY');
+   const date5 = moment(date,'DD-MM-YYYY').add(70, 'd').format('DD-MM-YYYY');
+   const date6 = moment(date,'DD-MM-YYYY').add(84, 'd').format('DD-MM-YYYY');
+console.log("PSKSKKS",date);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light" />
@@ -164,9 +178,13 @@ const Screen1 = () => {
         </TouchableOpacity>
         <Image style={styles.logoImage} source={require('../assets/groomers-assets/logo.png')} />
       </View>
-      <ScrollView style={styles.scrollView}>
+      <>
 
-        <View style={{ justifyContent: 'center', alignContent: 'center', alignSelf: 'center' }}>
+        <View style={{
+          justifyContent: 'center',
+          alignContent: 'center',
+          alignSelf: 'center'
+        }}>
           <Image
             style={styles.tinyImage}
             source={require('../assets/groomers-assets/Screen1dog.png')}
@@ -176,7 +194,7 @@ const Screen1 = () => {
         </View>
         <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
           <View style={styles.boxesContainer}>
-            <View style={!focus1?[styles.boxes, { marginLeft: 0 }]:[styles.boxexFocus, { marginLeft: 0 }]}>
+            <View style={!focus1 ? [styles.boxes, { marginLeft: 0 }] : [styles.boxexFocus, { marginLeft: 0 }]}>
               <TouchableOpacity
                 onPress={() => {
                   setFocus1(true),
@@ -187,16 +205,43 @@ const Screen1 = () => {
                     setFocus6(false)
                 }}>
                 <Text style={!focus1 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>Today</Text>
+
               </TouchableOpacity>
-              <Text style={styles.boxesTextContent}>19th Sept</Text>
+              <DatePicker
+                style={styles.boxesTextContent1}
+                date={date} //initial date from state
+                mode="date" //The enum of date, datetime and time
+                showIcon={false}
+                placeholder="select date"
+                format="DD-MM-YYYY"
+              //  minDate="01-01-2016"
+               // maxDate="01-01-2019"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                onDateChange={(date) => {
+                  setDate(date);
+                }}
+
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0,
+                   
+                  },
+                  dateText: {
+                    fontSize: 14,
+                    fontWeight: 'bold'
+               }
+                }}
+              />
+              {/* <Text style={styles.boxesTextContent}>{date}</Text> */}
             </View>
-            <View style={!focus2 ?styles.boxes:styles.boxexFocus}
+            <View style={!focus2 ? styles.boxes : styles.boxexFocus}
               onPress={() => {
 
               }}
             >
 
-              <TouchableOpacity
+              <TouchableOpacity disabled={true}
                 onPress={() => {
                   setFocus1(false),
                     setFocus2(true),
@@ -207,16 +252,16 @@ const Screen1 = () => {
                 }}>
                 <Text style={!focus2 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>4 Weeks</Text>
               </TouchableOpacity>
-              <Text style={styles.boxesTextContent}>16th Oct</Text>
+              <Text style={styles.boxesTextContent}> {date2}</Text>
 
             </View>
-            <View style={!focus3 ?styles.boxes:styles.boxexFocus}
+            <View style={!focus3 ? styles.boxes : styles.boxexFocus}
               onPress={() => {
 
               }}
             >
 
-              <TouchableOpacity
+              <TouchableOpacity disabled={true}
                 onPress={() => {
                   setFocus1(false),
                     setFocus2(false),
@@ -227,14 +272,14 @@ const Screen1 = () => {
                 }}
               >
                 <Text style={!focus3 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>6 Weeks</Text>
-              </TouchableOpacity><Text style={styles.boxesTextContent}>30th Oct</Text></View>
+              </TouchableOpacity><Text style={styles.boxesTextContent}>{date3}</Text></View>
           </View>
 
           <View style={styles.boxesContainer2}>
-          <View style={!focus4?[styles.boxes, { marginLeft: 0 }]:[styles.boxexFocus, { marginLeft: 0 }]}>
-        
-            
-              <TouchableOpacity
+            <View style={!focus4 ? [styles.boxes, { marginLeft: 0 }] : [styles.boxexFocus, { marginLeft: 0 }]}>
+
+
+              <TouchableOpacity disabled={true}
                 onPress={() => {
                   setFocus1(false),
                     setFocus2(false),
@@ -246,56 +291,55 @@ const Screen1 = () => {
               >
                 <Text style={!focus4 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>8 Weeks</Text>
               </TouchableOpacity>
-              <Text style={styles.boxesTextContent}>13th Nov</Text></View>
-              <View style={!focus5 ?styles.boxes:styles.boxexFocus}
-   >
-              <TouchableOpacity
-            onPress={() => {
-              setFocus1(false),
-              setFocus2(false),
-              setFocus3(false),
-              setFocus4(false),
-              setFocus5(true),
-              setFocus6(false)
-        
-            }}
-           >
-              <Text style={!focus5? styles.boxesTextHeading:styles.boxesTextHeadingFocus}>10 Weeks</Text>
+              <Text style={styles.boxesTextContent}>{date4}</Text></View>
+            <View style={!focus5 ? styles.boxes : styles.boxexFocus}
+            >
+              <TouchableOpacity disabled={true}
+                onPress={() => {
+                  setFocus1(false),
+                    setFocus2(false),
+                    setFocus3(false),
+                    setFocus4(false),
+                    setFocus5(true),
+                    setFocus6(false)
+
+                }}
+              >
+                <Text style={!focus5 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>10 Weeks</Text>
               </TouchableOpacity>
-              <Text style={styles.boxesTextContent}>27th Nov</Text></View>
-              <View style={!focus6 ?styles.boxes:styles.boxexFocus}
-   >
-            
-             <TouchableOpacity
-            onPress={() => {
-              setFocus1(false),
-              setFocus2(false),
-              setFocus3(false),
-              setFocus4(false),
-              setFocus5(false),
-              setFocus6(true)
-        
-            }}
-           >
-              <Text style={!focus6? styles.boxesTextHeading:styles.boxesTextHeadingFocus}>12 Weeks</Text>
+              <Text style={styles.boxesTextContent}>{date5}</Text></View>
+            <View style={!focus6 ? styles.boxes : styles.boxexFocus}
+            >
+
+              <TouchableOpacity disabled={true}
+                onPress={() => {
+                  setFocus1(false),
+                    setFocus2(false),
+                    setFocus3(false),
+                    setFocus4(false),
+                    setFocus5(false),
+                    setFocus6(true)
+
+                }}
+              >
+                <Text style={!focus6 ? styles.boxesTextHeading : styles.boxesTextHeadingFocus}>12 Weeks</Text>
               </TouchableOpacity>
-              <Text style={styles.boxesTextContent}>11th Dec</Text></View>
+              <Text style={styles.boxesTextContent}>{date6}</Text></View>
           </View>
 
-          <View style={{}}>
-            <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
-              width: windowWidth - 50,
-              height: responsiveHeight(15),
-              marginTop: 20,
-              resizeMode: "contain",
-              elevation: 10
-            }}>
-              <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
-            </ImageBackground>
-          </View>
+
+          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
+            width: windowWidth - 40,
+            height: responsiveHeight(15),
+            marginTop: 20,
+            resizeMode: "contain",
+            elevation: 10
+          }}>
+            <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
+          </ImageBackground>
         </View>
 
-      </ScrollView>
+      </>
     </SafeAreaView>
 
   );

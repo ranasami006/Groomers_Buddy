@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   tinyImage: {
-    width: 190,
-    height: 170,
+    width: 150,
+    height: 135,
+    //marginTop:responsiveHeight(2),
     //transform: [{ rotateX: '180deg' }, { rotateZ: '180deg' }],
   },
   logoText: {
@@ -71,13 +72,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   screenHeading: {
-    fontSize: 20, marginTop: 5, fontWeight: 'bold'
+    fontSize: 20, marginTop: 0, fontWeight: 'bold'
   },
   screenHeadingContent: {
     textAlign: 'center',
     fontSize: 15,
     width: windowWidth / 1.1,
-    marginTop: 5,
+    marginTop: 0,
     marginBottom: 10,
     alignSelf: 'center',
   },
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   },
   SecondViewTotal: {
     width: deviceWidth - 50,
-    height: responsiveHeight(5),
+    height: responsiveHeight(4),
     //borderBottomWidth: 1,
     //borderColor:'#d1c0c0',
     flexDirection: 'row',
