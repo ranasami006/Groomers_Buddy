@@ -18,6 +18,10 @@ import Screen3 from '../Screens/screen3'
 import Screen4 from '../Screens/screen4'
 import CustomDrawer from './CustomeDrawer'
 import Splash from './Splash'
+import Login from '../Screens/Login'
+import AdminHome from '../Screens/AdminHome'
+import AdminViewALL from '../Screens/AdminViewALL'
+import EditHome from '../Screens/EditHome'
 hideAsync().catch(console.warn);
 const Drawer = createDrawerNavigator();
 const MainStack = createStackNavigator();
@@ -44,12 +48,10 @@ const Main = () => {
     <MainStack.Navigator initialRouteName="Tab" screenOptions={{ headerShown: false, 
     gestureEnabled: false }} >
       <MainStack.Screen name="Tab" component={Tab} />
-      {/* <MainStack.Screen name="Screen2" component={Screen2} />
-          <MainStack.Screen name="Screen3" component={Screen3} />
-          <MainStack.Screen name="Screen4" component={Screen4} />
-           <AppTabNavigator.Screen name="Home" component={Home} /> */}
-      {/* <AppTabNavigator.Screen name="Screen2" component={Screen2} />
-          <AppTabNavigator.Screen name="Screen3" component={Screen3} /> */}
+      <MainStack.Screen name="Login" component={Login} />
+      <MainStack.Screen name="AdminHome" component={AdminHome} />
+      <MainStack.Screen name="AdminViewALL" component={AdminViewALL} />
+      <MainStack.Screen name="EditHome" component={EditHome} />
 
     </MainStack.Navigator>
   );
@@ -99,7 +101,7 @@ const Tab = () => {
         style: {
           backgroundColor: 'white',
           alignItems: 'center',
-          height: 60,
+          height: 80,
         },
       }}
     >
@@ -113,9 +115,11 @@ const Tab = () => {
               //   style={styles.iconHomeFoucsed}
               // />
               // ):(
-              <View style={{ backgroundColor: '#e3986f', 
+              <View style={{ 
+              backgroundColor: '#e3986f', 
               borderRadius: 7, 
-              width: '50%', height: '85%', 
+              width: '50%', 
+              height: '85%', 
               justifyContent: 'center', }}>
                 <FontAwesome
                   name={'calendar'}
@@ -225,7 +229,7 @@ export default App = () => {
       {!isLoadingSplash && (
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Main"
-            //edgeWidth={0}
+            edgeWidth={0}
             drawerContent={props => <CustomDrawer {...props} />}
             statusBarAnimation={'slide'}
             hideStatusBar={false}

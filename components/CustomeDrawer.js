@@ -121,6 +121,20 @@ export default class CustomDrawer extends Component {
               </Text>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Login');
+              }}
+              style={[styles.tab,{borderBottomWidth:0}]}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.icon}>
+                
+                </View>
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(5),color:'white' }]}>
+                Admin
+              </Text>
+              </View>
+            </TouchableOpacity>
           </View>
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState } from 'react'
 import {
   View, Text, Image,
   TextInput,
@@ -11,10 +11,18 @@ import {
   responsiveHeight,
   responsiveFontSize,
 } from 'react-native-responsive-dimensions';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import Constants from 'expo-constants';
+import { cos } from 'react-native-reanimated';
 let deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -159,13 +167,12 @@ const styles = StyleSheet.create({
   },
   SecondView: {
     width: deviceWidth - 50,
-    height: responsiveHeight(5),
+   height: responsiveHeight(5),
     borderBottomWidth: 1,
-    alignItems: 'center',
     alignSelf: 'center',
     borderColor: '#d1c0c0',
     flexDirection: 'row',
-    alignContent: "space-between",
+    //alignContent: "space-between",
     justifyContent: 'space-between',
     padding: responsiveHeight(1),
   },
@@ -175,11 +182,10 @@ const styles = StyleSheet.create({
     //borderBottomWidth: 1,
     //borderColor:'#d1c0c0',
     flexDirection: 'row',
-    alignContent: "space-between",
-    justifyContent: 'space-between',
+     justifyContent: 'space-between',
     padding: responsiveHeight(1),
     marginTop: responsiveHeight(1),
-    alignItems: 'center',
+    //alignItems: 'center',
     alignSelf: 'center',
   },
   bottomView: {
@@ -191,15 +197,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   SecondViewRight: {
+    width:'30%',
     color: '#fd9d8a',
     fontWeight: 'bold',
     fontSize: responsiveFontSize(1.8),
+    alignSelf:'center',
   },
 
 });
+const bannerError=() => {
+  console.log("pakkkkk")
+}
+
+
 
 const Screen2 = () => {
   const navigation = useNavigation();
+  const [ratio, setRatio] = useState(null);
+  const [bszie, setBsize] = useState(null);
+  const [bcost, setBcost] = useState(null);
+  const [tProduct, setTproduct] = useState(0);
+  const product= ratio*bszie
+  const cost =bcost/product
   return (
     <SafeAreaView style={styles.container}>
 
@@ -242,53 +261,71 @@ const Screen2 = () => {
             </Text>
         </View>
 
-
+      <View style={{alignContent:'center',}} >
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Mix Ratio (X:1)</Text>
-          {/* <TextInput
-           
-            onChangeText={onChangeNumber}
-            value={number}  
-            
-          /> */}
+         
           <TextInput
             style={styles.SecondViewRight}
             placeholder="Ratio value"
             keyboardType="numeric"
+            onChangeText={setRatio}
+            value ={ratio}
           />
         </View>
 
 
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Bottle Size (Ltr)</Text>
-          <Text style={styles.SecondViewRight}>       5     ></Text>
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Bottle size"
+            keyboardType="numeric"
+            onChangeText={setBsize}
+            value ={bszie}
+          />
+          {/* <Text style={styles.SecondViewRight}>       5     ></Text> */}
         </View>
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Cost of Bottle(£/$)</Text>
-          <Text style={styles.SecondViewRight}>32.00   ></Text>
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Bottle price"
+            keyboardType="numeric"
+            onChangeText={setBcost}
+            value ={bcost}
+          />
+          {/* <Text style={styles.SecondViewRight}>32.00   ></Text> */}
         </View>
+
         <View style={styles.bottomView}>
           <View style={styles.SecondViewTotal}>
             <Text style={styles.SecondViewLeft}>Total Product Made</Text>
-            <Text style={[styles.SecondViewRight, { color: 'black' }]}>100</Text>
+            <Text style={[styles.SecondViewRight, { color: 'black' }]}>{product.toFixed(2)}</Text>
           </View>
           <View style={styles.SecondViewTotal}>
-            <Text style={styles.SecondViewLeft}>Cost Per Litre</Text>
-            <Text style={[styles.SecondViewRight, { color: 'black' }]}>£0.32</Text>
+            <Text style={styles.SecondViewLeft}>Cost Per Litre(£/$)</Text>
+            <Text style={[styles.SecondViewRight, { color: 'black' }]}>{cost?cost.toFixed(2):0}</Text>
           </View>
         </View>
+</View>
 
-        <View>
-          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
-            width: windowWidth - 40,
-            height: responsiveHeight(15),
-            marginTop: 10,
-            resizeMode: "contain",
-            elevation: 10
-          }}>
-            <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
-          </ImageBackground>
-        </View>
+        <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2),alignSelf:'center'}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
+         
+         <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2),alignSelf:'center'}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
+         
+         
+            
       </View>
       {/* </ScrollView> */}
 

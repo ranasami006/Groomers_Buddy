@@ -4,11 +4,18 @@ import { Icon } from 'react-native-elements'
 import { StatusBar } from 'expo-status-bar';
 //import { DrawerActions } from '@react-navigation/drawer';
 import moment from 'moment'; // 2.18.1
-
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   responsiveWidth,
   responsiveHeight,
+  responsiveFontSize,
 } from 'react-native-responsive-dimensions';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -16,6 +23,7 @@ import Constants from 'expo-constants';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import DatePicker from 'react-native-datepicker';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -137,13 +145,16 @@ const styles = StyleSheet.create({
     width: windowWidth / 1.7,
     height: 40,
     resizeMode: 'contain',
-    marginLeft: responsiveWidth(10),
+    marginLeft: responsiveWidth(7),
     //marginTop: responsiveWidth(2),
     alignSelf: 'center',
     justifyContent: 'center',
     alignContent: 'center',
   },
 });
+const bannerError = () => {
+  console.log("pakkkkk")
+}
 
 const Screen1 = () => {
   const [date, setDate] = useState(new Date());
@@ -154,12 +165,12 @@ const Screen1 = () => {
   const [focus4, setFocus4] = useState(false);
   const [focus5, setFocus5] = useState(false);
   const [focus6, setFocus6] = useState(false);
-   const date2 = moment(date,'DD-MM-YYYY').add(28, 'd').format('DD-MM-YYYY');
-   const date3 = moment(date,'DD-MM-YYYY').add(42, 'd').format('DD-MM-YYYY');
-   const date4 = moment(date,'DD-MM-YYYY').add(56, 'd').format('DD-MM-YYYY');
-   const date5 = moment(date,'DD-MM-YYYY').add(70, 'd').format('DD-MM-YYYY');
-   const date6 = moment(date,'DD-MM-YYYY').add(84, 'd').format('DD-MM-YYYY');
-console.log("PSKSKKS",date);
+  const date2 = moment(date, 'DD-MMM-YY').add(28, 'd').format('DD-MMM-YY');
+  const date3 = moment(date, 'DD-MMM-YY').add(42, 'd').format('DD-MMM-YY');
+  const date4 = moment(date, 'DD-MMM-YY').add(56, 'd').format('DD-MMM-YY');
+  const date5 = moment(date, 'DD-MMM-YY').add(70, 'd').format('DD-MMM-YY');
+  const date6 = moment(date, 'DD-MMM-YY').add(84, 'd').format('DD-MMM-YY');
+  console.log("PSKSKKS", date);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light" />
@@ -177,6 +188,18 @@ console.log("PSKSKKS",date);
           />
         </TouchableOpacity>
         <Image style={styles.logoImage} source={require('../assets/groomers-assets/logo.png')} />
+        {/* <TouchableOpacity
+          onPress={() => { navigation.navigate('Login') }}
+        >
+          <Text style={{
+
+            color: '#fca18e', fontSize: responsiveFontSize(2), 
+            fontWeight: 'bold', 
+            textAlign: 'right', marginLeft: responsiveHeight(2)
+
+          }}>Admin</Text>
+
+        </TouchableOpacity> */}
       </View>
       <>
 
@@ -213,9 +236,9 @@ console.log("PSKSKKS",date);
                 mode="date" //The enum of date, datetime and time
                 showIcon={false}
                 placeholder="select date"
-                format="DD-MM-YYYY"
-              //  minDate="01-01-2016"
-               // maxDate="01-01-2019"
+                format="DD-MMM-YY"
+                //  minDate="01-01-2016"
+                // maxDate="01-01-2019"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 onDateChange={(date) => {
@@ -225,12 +248,12 @@ console.log("PSKSKKS",date);
                 customStyles={{
                   dateInput: {
                     borderWidth: 0,
-                   
+
                   },
                   dateText: {
                     fontSize: 14,
                     fontWeight: 'bold'
-               }
+                  }
                 }}
               />
               {/* <Text style={styles.boxesTextContent}>{date}</Text> */}
@@ -327,8 +350,22 @@ console.log("PSKSKKS",date);
               <Text style={styles.boxesTextContent}>{date6}</Text></View>
           </View>
 
-
-          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
+        
+          <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2)}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
+         
+         <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2)}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
+           </View>
+          {/* <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
             width: windowWidth - 40,
             height: responsiveHeight(15),
             marginTop: 20,
@@ -336,8 +373,8 @@ console.log("PSKSKKS",date);
             elevation: 10
           }}>
             <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
-          </ImageBackground>
-        </View>
+          </ImageBackground> */}
+        
 
       </>
     </SafeAreaView>

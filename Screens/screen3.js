@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, Button, Dimensions, StatusBar, ScrollView, TouchableOpacity } from 'react-native'
+import React, {useState} from 'react'
+import { View, Text, Image, SafeAreaView, StyleSheet,TextInput, ImageBackground, Button, Dimensions, StatusBar, ScrollView, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
@@ -11,6 +11,13 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import Constants from 'expo-constants';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 let deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -182,14 +189,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   SecondViewRight: {
+    width:'35%',
     color: '#fd9d8a',
     fontWeight: 'bold',
     fontSize: responsiveFontSize(1.8),
   },
 });
 
+const bannerError=() => {
+  console.log("pakkkkk")
+}
+
 const Screen3 = () => {
   const navigation = useNavigation();
+  const [watts, setWatts] = useState(null);
+  const [hoursUsed ,sethoursUsed] = useState(null);
+  const [Ndays, setNdays] = useState(null);
+  const [Ecost, setEcost] = useState(0);
+  const Khours= (watts*hoursUsed*Ndays)/1000
+  const cost =Ecost*Khours
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -239,34 +257,63 @@ const Screen3 = () => {
 
 
         <View style={styles.SecondView}>
-          <Text style={styles.SecondViewLeft}>Kilowatts</Text>
-          <Text style={styles.SecondViewRight}>20  ></Text>
+          <Text style={styles.SecondViewLeft}>Watts</Text>
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Watts"
+            keyboardType="numeric"
+            onChangeText={setWatts}
+            value ={watts}
+          />
+          
+          {/* <Text style={styles.SecondViewRight}>20  ></Text> */}
         </View>
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Hours Used Per Day</Text>
-          <Text style={styles.SecondViewRight}>       1   ></Text>
+          {/* <Text style={styles.SecondViewRight}>       1   ></Text> */}
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Hours per day"
+            keyboardType="numeric"
+            onChangeText={sethoursUsed}
+            value ={hoursUsed}
+          />
         </View>
         <View style={styles.SecondView}>
           <Text style={styles.SecondViewLeft}>Number of Days</Text>
-          <Text style={styles.SecondViewRight}>       1   ></Text>
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Number of days"
+            keyboardType="numeric"
+            onChangeText={setNdays}
+            value ={Ndays}
+          />
+          {/* <Text style={styles.SecondViewRight}>       1   ></Text> */}
         </View>
         <View style={styles.SecondView}>
-          <Text style={styles.SecondViewLeft}>Electric Cost Per KWH</Text>
-          <Text style={styles.SecondViewRight}>£0.17  ></Text>
+          <Text style={styles.SecondViewLeft}>Electric Cost per KWH(£/$)</Text>
+          <TextInput
+            style={styles.SecondViewRight}
+            placeholder="Electric cost"
+            keyboardType="numeric"
+            onChangeText={setEcost}
+            value ={Ecost}
+          />
+          {/* <Text style={styles.SecondViewRight}>0.17  ></Text> */}
         </View>
         <View style={styles.bottomView}>
           <View style={styles.SecondViewTotal}>
-            <Text style={styles.SecondViewLeft}>Kilowatt Hours</Text>
-            <Text style={[styles.SecondViewRight, { color: 'black' }]}>100</Text>
+            <Text style={styles.SecondViewLeft}>Watt Hours</Text>
+            <Text style={[styles.SecondViewRight, { color: 'black' }]}>{Khours.toFixed(2)}</Text>
           </View>
           <View style={styles.SecondViewTotal}>
-            <Text style={styles.SecondViewLeft}>Running Cost</Text>
-            <Text style={[styles.SecondViewRight, { color: 'black' }]}>£0.32</Text>
+            <Text style={styles.SecondViewLeft}>Running Cost(£/$)</Text>
+            <Text style={[styles.SecondViewRight, { color: 'black' }]}>{Math.round((cost + Number.EPSILON) * 100) / 100}</Text>
           </View>
         </View>
 
         <View>
-          <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
+          {/* <ImageBackground borderRadius={10} source={require('../assets/img/image2.png')} style={{
             width: windowWidth - 30,
             height: responsiveHeight(15),
             marginTop: 10,
@@ -274,7 +321,20 @@ const Screen3 = () => {
             elevation: 10
           }}>
             <Text style={styles.bottomImageContent}> Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting</Text>
-          </ImageBackground>
+          </ImageBackground> */}
+         <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2),alignSelf:'center'}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
+         
+         <AdMobBanner
+            bannerSize="banner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            style={{marginTop:responsiveHeight(2),alignSelf:'center'}}
+            servePersonalizedAds={true}
+            onDidFailToReceiveAdWithError={bannerError} />
         </View>
 
       {/* </ScrollView> */}

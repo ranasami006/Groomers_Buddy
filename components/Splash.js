@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, ScrollView, Dimensions, SafeAreaView, Picker } from 'react-native'
+import React, { useState,useEffect } from 'react'
+import { View, Text, Image, StyleSheet, ImageBackground, Button, TouchableOpacity, ScrollView, Dimensions, SafeAreaView, Picker, } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { StatusBar } from 'expo-status-bar';
 //import { DrawerActions } from '@react-navigation/drawer';
@@ -14,7 +14,7 @@ import Constants from 'expo-constants';
 import * as Progress from 'react-native-progress';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
+import {connectFirebase } from "../Screens/firbase/firaseconfig"
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -137,19 +137,25 @@ const styles = StyleSheet.create({
 });
 
 const Splash = () => {
-    return (
+  useEffect(() => {
+    // Update the document title using the browser API
+    connectFirebase()
+  });
+
+
+  return (
    <>
    <View style={{alignContent:'center',justifyContent:'center',alignSelf:'center',flex:1}}>
     <Image style={styles.logoImage} source={require('../assets/groomers-assets/splashLogo.png')} />
     </View>
    
    <View style={{alignSelf:'center',justifyContent:'center',alignContent:'center',margin:5}}>
-   <Text style={{alignSelf:'center',fontSize:25,fontWeight:'bold',margin:5}}>Loading...</Text>
-   <Progress.Bar progress={0.8}  
+   {/* <Text style={{alignSelf:'center',fontSize:25,fontWeight:'bold',margin:5}}>Loading...</Text> */}
+   {/* <Progress.Bar progress={0.8}  
    width={windowWidth-80} height={15} 
    borderRadius={6} 
    color={'rgba(252, 161, 142, 1)'}
-   useNativeDriver/>
+   useNativeDriver/> */}
    <View style={{height: 50}}/> 
    </View>
 </>

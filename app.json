@@ -5,7 +5,6 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -13,17 +12,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ranasami06.GrocersApp"
     },
     "android": {
-      "splash": {
-        "mdpi": "./assets/img/splash/splash-mdpi.png",
-        "hdpi": "./assets/img/splash/splash-hdpi.png",
-        "xhdpi": "./assets/img/splash/splash-xhdpi.png",
-        "xxhdpi": "./assets/img/splash/splash-xxhdpi.png",
-        "xxxhdpi": "./assets/img/splash/splash-xxxhdpi.png",
-        "resizeMode": "contain"
-      },
       "package": "com.ranasami06.GrocersApp"
     },
     "web": {
