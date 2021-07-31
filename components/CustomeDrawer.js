@@ -13,6 +13,7 @@ import {
   TextInput,
   AsyncStorage,
   Alert,
+  Linking,
 } from 'react-native';
 import {
   responsiveWidth,
@@ -24,7 +25,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class CustomDrawer extends Component {
   state = {
     email: '',
@@ -118,6 +118,23 @@ export default class CustomDrawer extends Component {
                 </View>
                 <Text style={[styles.text1, { marginLeft: responsiveWidth(5) }]}>
                 Summary of cut
+              </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://groomersbuddy.app/')
+              }}
+              style={styles.tab}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.icon}>
+                <Feather name="help-circle" size={24} color="black" />
+                {/* <Image
+                style={[styles.imageDrawer,{width: responsiveHeight(5)}]}
+                source={require('../assets/groomers-assets/help.jpeg')}></Image> */}
+                </View>
+                <Text style={[styles.text1, { marginLeft: responsiveWidth(5) }]}>
+                Help
               </Text>
               </View>
             </TouchableOpacity>

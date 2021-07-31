@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GrocersApp",
-    "slug": "GrocersApp",
+    "name": "Groomers_Buddy",
+    "slug": "Groomers_Buddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,10 +13,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ranasami06.GrocersApp"
+      "bundleIdentifier": "com.ranasami06.GroomersBuddy"
     },
     "android": {
-      "package": "com.ranasami06.GrocersApp"
+      "package": "com.ranasami06.GroomersBuddy"
     },
     "web": {
       "favicon": "./assets/favicon.png"

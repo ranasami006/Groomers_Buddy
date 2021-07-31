@@ -46,7 +46,7 @@ const Main = () => {
   return (
 
     <MainStack.Navigator initialRouteName="Tab" screenOptions={{ headerShown: false, 
-    gestureEnabled: false }} >
+    gestureEnabled: true }} >
       <MainStack.Screen name="Tab" component={Tab} />
       <MainStack.Screen name="Login" component={Login} />
       <MainStack.Screen name="AdminHome" component={AdminHome} />

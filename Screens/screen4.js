@@ -25,6 +25,8 @@ let deviceWidth = Dimensions.get('window').width;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import { getAllOfCollection } from "../Screens/firbase/utility";
+import * as ScreenCapture from 'expo-screen-capture';
+import * as MediaLibrary from 'expo-media-library';
 import { render } from 'react-dom';
 const styles = StyleSheet.create({
   container: {
@@ -230,12 +232,18 @@ export default class Screen4 extends Component {
     this.setState({
       loader: true,
     })
+    const { status } = await MediaLibrary.requestPermissionsAsync();
+    if (status === 'granted') {
+      await ScreenCapture.preventScreenCaptureAsync();
+    
+    }
     let data = await getAllOfCollection("breedData")
     await this.setState({
       breedData: data,
       loader: false,
       
     })
+   
     //console.log(this.state.breedData[this.state.breedindex].c_tool);
   }
   bannerError() {
