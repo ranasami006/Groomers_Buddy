@@ -118,8 +118,8 @@ const Tab = () => {
               <View style={{ 
               backgroundColor: '#e3986f', 
               borderRadius: 7, 
-              width: '50%', 
-              height: '85%', 
+              width: '60%', 
+              height: '75%', 
               justifyContent: 'center', }}>
                 <FontAwesome
                   name={'calendar'}
@@ -128,12 +128,6 @@ const Tab = () => {
                   style={styles.iconCalender}
                 />
               </View>
-
-              //   <Image
-              //   source={require("../assets/groomers-assets/Group8.png")}
-              //   style={styles.iconHome}
-              // />
-              // )
             );
           },
         }}
@@ -148,7 +142,10 @@ const Tab = () => {
               //   style={styles.iconHomeFoucsed}
               // />
               // ):(
-              <View style={{ backgroundColor: '#e3986f', borderRadius: 7, width: '50%', height: '85%', justifyContent: 'center', }}>
+              <View style={{ backgroundColor: '#e3986f', borderRadius: 7, 
+              width: '60%', 
+              height: '75%', 
+               justifyContent: 'center', }}>
                 <Image
                   source={require("../assets/groomers-assets/shampoo.png")}
                   style={[styles.iconHome,{marginLeft:4,}]}
@@ -169,7 +166,9 @@ const Tab = () => {
               //   style={styles.iconHomeFoucsed}
               // />
               // ):(
-                <View style={{ backgroundColor: '#e3986f', borderRadius: 7, width: '50%', height: '85%', justifyContent: 'center', }}>
+                <View style={{ backgroundColor: '#e3986f', borderRadius: 7,
+                width: '60%', 
+                height: '75%',  justifyContent: 'center', }}>
                 <Image
                   source={require("../assets/groomers-assets/power.png")}
                   style={styles.iconHome}
@@ -191,7 +190,8 @@ const Tab = () => {
               // />
               // ):(
                 <View style={{ backgroundColor: '#e3986f', borderRadius: 7, 
-                width: '50%', height: '85%', 
+                width: '60%', 
+                height: '75%', 
                 justifyContent: 'center',alignContent:'center',alignItems:'center',alignSelf:'center' }}>
                 <Image
                   source={require("../assets/groomers-assets/dog.png")}
