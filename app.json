@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Groomers_Buddy",
-    "slug": "Groomers_Buddy",
+    "name": "GroomersBuddy",
+    "slug": "GroomersBuddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/groomers-assets/splashLogo.png",
