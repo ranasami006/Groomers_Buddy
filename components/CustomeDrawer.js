@@ -33,7 +33,6 @@ export default class CustomDrawer extends Component {
   async componentDidMount() {
 
   }
-
   render() {
     return (
       <View style={styles.container}>
